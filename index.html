@@ -1,196 +1,87 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Long Beach Concierge</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
 
-<style>
-
-:root{
-    --navy:#0A2240;
-    --gold:#C5A059;
-    --light:#F4F7F6;
-    --white:#FFFFFF;
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Segoe UI,Tahoma,sans-serif;
-}
-
-body{
-    background:var(--light);
-}
-
-header{
-    background:var(--navy);
-    padding:15px;
-    text-align:center;
-    border-bottom:3px solid var(--gold);
-}
-
-.logo{
-    color:var(--gold);
-    font-size:28px;
-    font-weight:700;
-    letter-spacing:2px;
-}
-
-.subtitle{
-    color:white;
-    font-size:13px;
-}
-
-.language-bar{
-    margin-top:12px;
-}
-
-.language-bar button{
-    background:var(--gold);
-    border:none;
-    padding:8px 14px;
-    margin:3px;
-    border-radius:20px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.hero{
-    height:250px;
-    background:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200')
-    center/cover;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.hero-content{
-    background:rgba(10,34,64,.75);
-    padding:25px;
-    border-radius:15px;
-    text-align:center;
-}
-
-.hero-content h1{
-    color:white;
-}
-
-.hero-content p{
-    color:#ddd;
-    margin-top:10px;
-}
-
-.quick-grid{
-    padding:20px;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-    gap:15px;
-}
-
-.card{
-    background:white;
-    border-radius:15px;
-    padding:25px;
-    text-align:center;
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
-    border-top:4px solid var(--gold);
-    cursor:pointer;
-    transition:.3s;
-}
-
-.card:hover{
-    transform:translateY(-5px);
-}
-
-.card i{
-    font-size:32px;
-    color:var(--gold);
-    margin-bottom:10px;
-}
-
-.card h3{
-    color:var(--navy);
-}
-
-footer{
-    margin-top:40px;
-    background:var(--navy);
-    color:white;
-    text-align:center;
-    padding:20px;
-}
-</style>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
+
 <body>
 
-<header>
+<header class="main-header">
 
-<div class="logo">
-LONG BEACH<br>
-CONCIERGE
-</div>
+    <div class="logo">
 
-<div class="subtitle">
-Your Digital Resort Assistant
-</div>
+        <h1>LONG BEACH</h1>
+        <h2>CONCIERGE</h2>
 
-<div class="language-bar">
-<button>🇪🇬 العربية</button>
-<button>🇬🇧 English</button>
-<button>🇩🇪 Deutsch</button>
-<button>🇷🇺 Русский</button>
-</div>
+    </div>
+
+    <div class="language-switcher">
+
+        <button onclick="changeLanguage('ar')">🇪🇬</button>
+        <button onclick="changeLanguage('en')">🇬🇧</button>
+        <button onclick="changeLanguage('de')">🇩🇪</button>
+        <button onclick="changeLanguage('ru')">🇷🇺</button>
+
+    </div>
 
 </header>
 
-<section class="hero">
+<main id="app">
 
-<div class="hero-content">
-<h1>Welcome to Long Beach Resort Hurghada</h1>
-<p>Luxury Digital Concierge Experience</p>
-</div>
+    <section class="hero">
 
-</section>
+        <h1>Welcome to Long Beach Resort Hurghada</h1>
 
-<section class="quick-grid">
+        <p>Your Digital Concierge Experience</p>
 
-<div class="card">
-<i class="fa-solid fa-robot"></i>
-<h3>Concierge</h3>
-</div>
+    </section>
 
-<div class="card">
-<i class="fa-solid fa-utensils"></i>
-<h3>Restaurants</h3>
-</div>
+    <section class="quick-access">
 
-<div class="card">
-<i class="fa-solid fa-martini-glass"></i>
-<h3>Bars</h3>
-</div>
+        <div class="feature-card">
+            <i class="fa-solid fa-robot"></i>
+            <h3>Concierge</h3>
+        </div>
 
-<div class="card">
-<i class="fa-solid fa-champagne-glasses"></i>
-<h3>Events</h3>
-</div>
+        <div class="feature-card">
+            <i class="fa-solid fa-utensils"></i>
+            <h3>Restaurants</h3>
+        </div>
 
-<div class="card">
-<i class="fa-solid fa-bell-concierge"></i>
-<h3>Room Service</h3>
-</div>
+        <div class="feature-card">
+            <i class="fa-solid fa-martini-glass"></i>
+            <h3>Bars</h3>
+        </div>
 
-</section>
+        <div class="feature-card">
+            <i class="fa-solid fa-champagne-glasses"></i>
+            <h3>Events</h3>
+        </div>
 
-<footer>
-Long Beach Concierge © 2026
-</footer>
+        <div class="feature-card">
+            <i class="fa-solid fa-bell-concierge"></i>
+            <h3>Room Service</h3>
+        </div>
+
+    </section>
+
+</main>
+
+<script src="js/language.js"></script>
+<script src="js/concierge.js"></script>
+<script src="js/app.js"></script>
 
 </body>
 </html>
