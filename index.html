@@ -49,6 +49,24 @@ body.rtl .menu-box{border-left:none;border-right:3px solid #c5a059;}
 
 .sub-category-title{font-size:20px;color:#0a2240;font-weight:700;margin:30px 0 10px 0;padding-bottom:5px;border-bottom:2px solid #eef2f5;}
 
+/* تصميم نظام الشات والمساعد الذكي */
+.ai-chat-toggle{position:fixed;bottom:25px;right:25px;background:#c5a059;color:#fff;width:60px;height:60px;border-radius:50%;border:none;cursor:pointer;font-size:26px;box-shadow:0 5px 20px rgba(0,0,0,0.3);z-index:1000;display:flex;justify-content:center;align-items:center;transition:0.3s;}
+body.rtl .ai-chat-toggle{right:auto;left:25px;}
+.ai-chat-toggle:hover{transform:scale(1.05);background:#0a2240;}
+
+.ai-chat-window{position:fixed;bottom:95px;right:25px;width:370px;height:500px;background:#ffffff;border:1px solid #0a2240;border-top:5px solid #c5a059;border-radius:12px;z-index:1000;display:none;flex-direction:column;overflow:hidden;box-shadow:0 10px 35px rgba(0,0,0,0.2);}
+body.rtl .ai-chat-window{right:auto;left:25px;}
+.ai-header{background:#0a2240;padding:15px;color:#c5a059;font-weight:bold;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #c5a059;}
+.ai-body{flex:1;padding:15px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;font-size:14px;background:#f8f9fa;}
+.ai-msg{padding:12px;border-radius:8px;max-width:85%;line-height:1.5;box-shadow:0 2px 5px rgba(0,0,0,0.02);}
+.ai-msg.bot{background:#ffffff;color:#0a2240;align-self:flex-start;border-left:4px solid #c5a059;}
+body.rtl .ai-msg.bot{border-left:none;border-right:4px solid #c5a059;align-self:flex-start;}
+.ai-msg.user{background:#0a2240;color:#fff;align-self:flex-end;}
+.ai-footer{padding:12px;background:#ffffff;display:flex;gap:8px;border-top:1px solid #eee;}
+.ai-input{flex:1;background:#f4f7f6;border:1px solid #ddd;padding:12px;border-radius:6px;outline:none;font-size:14px;}
+.ai-input:focus{border-color:#c5a059;}
+.ai-send{background:#c5a059;color:#fff;border:none;padding:10px 18px;border-radius:6px;cursor:pointer;font-weight:bold;}
+
 footer{background:#0a2240;color:#fff;padding:25px;text-align:center;border-top:4px solid #c5a059;font-size:13px;margin-top:40px;}
 </style>
 </head>
@@ -93,6 +111,19 @@ footer{background:#0a2240;color:#fff;padding:25px;text-align:center;border-top:4
     <div id="partiesContainer"></div>
 </div>
 
+<button class="ai-chat-toggle" onclick="toggleAiWindow()">💬</button>
+<div class="ai-chat-window" id="aiWindow">
+    <div class="ai-header">
+        <span id="aiHeaderTitle">Resort Assistant</span>
+        <button onclick="toggleAiWindow()" style="background:transparent;border:none;color:#c5a059;cursor:pointer;font-size:16px;font-weight:bold;">✕</button>
+    </div>
+    <div class="ai-body" id="aiMessages"></div>
+    <div class="ai-footer">
+        <input type="text" id="aiInput" class="ai-input" placeholder="Ask me anything..." onkeydown="if(event.key === 'Enter') askAiEngine()">
+        <button class="ai-send" onclick="askAiEngine()">➔</button>
+    </div>
+</div>
+
 <footer id="footerText">© Long Beach Concierge Hub - Elite Hospitality Platform</footer>
 
 <script>
@@ -108,6 +139,9 @@ const CONCIERGE_DATA = {
         partiesTitle: "Exclusive Resort Parties & Cruises",
         footerText: "© Long Beach Concierge Hub - Elite Hospitality Platform",
         menuTitle: "📖 Full Menu:",
+        aiWelcome: "Hello! I am your Smart Concierge. You can ask me any question about our 6 restaurants, their specialties, opening hours, or details regarding the beach and boat parties!",
+        aiPlaceholder: "Ask about a restaurant or party package...",
+        aiDefaultReply: "I'm here to help! Try asking about 'Italian restaurant', 'Seafood', 'Sushi', or 'Boat party details'.",
         
         restaurants: [
             { name: "ALDENTE", type: "Authentic Italian", hours: "06:30 PM - 10:00 PM", desc: "Fine wood-fired pizzas, artisanal handmade pastas, and upscale Italian desserts.", 
@@ -160,6 +194,9 @@ const CONCIERGE_DATA = {
         partiesTitle: "الحفلات الحصرية والرحلات البحرية",
         footerText: "© لونج بيش كونسيرج هاب - منصة الضيافة النخبوية",
         menuTitle: "📖 قائمة الطعام التفصيلية:",
+        aiWelcome: "مرحباً بك! أنا مساعدك الذكي في المنتجع. يمكنك سؤالي عن المطاعم الستة ومواعيدها وقوائم طعامها، أو الاستفسار عن تفاصيل وأسعار حفلات اليخوت والشاطئ!",
+        aiPlaceholder: "اسأل عن مطعم أو تفاصيل حفلة...",
+        aiDefaultReply: "أنا هنا لمساعدتك! جرّب كتابة كلمات مثل 'مطعم إيطالي'، 'سي فود'، 'سوشي'، أو 'حفلة اليخت'.",
         
         restaurants: [
             { name: "ALDENTE", type: "المأكولات الإيطالية الأصيلة", hours: "06:30 مساءً - 10:00 مساءً", desc: "بيتزا حقيقية على فرن الحطب، باستا مصنوعة يدوياً باحترافية، وحلويات إيطالية راقية.", 
@@ -182,7 +219,7 @@ const CONCIERGE_DATA = {
                 items: [
                     { name: "Single Cruise Pass (تذكرة الفرد)", price: "20 / Person", tag: "التوقيت: 10:00 AM - 05:00 PM", desc: "Includes: 2 Bottles of Heineken + Premium Lunch Meal on board while cruising the Red Sea crystal waters." },
                     { name: "Standard Lounge Table", price: "$40 / Table", tag: "السعة: تستوعب حتى 5 أفراد", desc: "Includes: 1 Bottle of Vodka + 4 Red Bulls + 1 Full Family Lunch Platter." },
-                    { name: "Club Soft Table", price: "$50 / Table", tag: "طاولة سوفت عائلية", desc: "Includes: 1 Liter of Pepsi + Family Chips basket.<br><strong style='color:#d9534f;'>* Note: No Vodka, Whiskey, or Hard liquors included in this tier. (مع السماح بـ No Vodka, Whiskey, or Hard liquors)</strong>" }
+                    { name: "Club Soft Table", price: "$50 / Table", tag: "طاولة سوفت عائلية", desc: "Includes: 1 Liter of Pepsi + Family Chips basket.<br><strong style='color:#d9534f;'>* Note: No Vodka, Whiskey, or Hard liquors included in this tier.</strong>" }
                 ]
             },
             beachParty: {
@@ -267,6 +304,48 @@ function renderPartiesGrid() {
     container.innerHTML += buildCategory(pData.extraExperiences);
 }
 
+// عناصر التحكم بفتح وإغلاق نافذة الشات
+function toggleAiWindow() {
+    const win = document.getElementById('aiWindow');
+    win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
+}
+
+// محرك ذكاء الكونسيرج الذكي لمعالجة النصوص تلقائياً
+function askAiEngine() {
+    const input = document.getElementById('aiInput');
+    const userMsg = input.value.trim();
+    if(!userMsg) return;
+    
+    const container = document.getElementById('aiMessages');
+    container.innerHTML += `<div class="ai-msg user">${userMsg}</div>`;
+    input.value = '';
+    
+    const msgLower = userMsg.toLowerCase();
+    let reply = CONCIERGE_DATA[currentLang].aiDefaultReply;
+    
+    // فحص الكلمات المفتاحية الذكية والرد الفوري بناءً على البيانات
+    if(msgLower.includes('aldente') || msgLower.includes('إيطالي') || msgLower.includes('italian')) {
+        reply = CONCIERGE_DATA[currentLang].restaurants[0].desc + " (⏰ " + CONCIERGE_DATA[currentLang].restaurants[0].hours + ")";
+    } else if(msgLower.includes('white') || msgLower.includes('وايت') || msgLower.includes('buffet') || msgLower.includes('بوفيه')) {
+        reply = CONCIERGE_DATA[currentLang].restaurants[1].desc + " (⏰ " + CONCIERGE_DATA[currentLang].restaurants[1].hours + ")";
+    } else if(msgLower.includes('breeze') || msgLower.includes('بريز') || msgLower.includes('beach grill')) {
+        reply = CONCIERGE_DATA[currentLang].restaurants[2].desc + " (⏰ " + CONCIERGE_DATA[currentLang].restaurants[2].hours + ")";
+    } else if(msgLower.includes('openbill') || msgLower.includes('أوبن') || msgLower.includes('sushi') || msgLower.includes('سوشي')) {
+        reply = CONCIERGE_DATA[currentLang].restaurants[3].desc + " (⏰ " + CONCIERGE_DATA[currentLang].restaurants[3].hours + ")";
+    } else if(msgLower.includes('mary') || msgLower.includes('صول') || msgLower.includes('بحري') || msgLower.includes('seafood') || msgLower.includes('سمك')) {
+        reply = CONCIERGE_DATA[currentLang].restaurants[4].desc + " (⏰ " + CONCIERGE_DATA[currentLang].restaurants[4].hours + ")";
+    } else if(msgLower.includes('podium') || msgLower.includes('بوديوم') || msgLower.includes('gourmet')) {
+        reply = CONCIERGE_DATA[currentLang].restaurants[5].desc + " (⏰ " + CONCIERGE_DATA[currentLang].restaurants[5].hours + ")";
+    } else if(msgLower.includes('party') || msgLower.includes('حفلة') || msgLower.includes('حفلات') || msgLower.includes('يخت') || msgLower.includes('safari') || msgLower.includes('سفاري')) {
+        reply = currentLang === 'ar' ? "لدينا باقات الـ Boat Party وتبدأ من 20$ للفرد وحفلات الشاطئ الفاخرة VIP (بـ 70$ و 80$) وتتضمن زجاجة مجانية مسموحة من الفودكا/الويسكي، بالإضافة لرحلة اليخت وعشاء السيفود (35$) ورحلة السفاري البدوية (45$)!" : "We have Boat Parties starting from $20/Person, VIP Beach Parties ($70 & $80) including a free allowed bottle of Vodka/Whiskey, Sunset Seafood Cruises ($35), and Starry Desert Safari ($45)!";
+    }
+    
+    setTimeout(() => {
+        container.innerHTML += `<div class="ai-msg bot">${reply}</div>`;
+        container.scrollTop = container.scrollHeight;
+    }, 300);
+}
+
 function switchLanguage(lang) {
     currentLang = lang;
     if(lang === 'ar') {
@@ -284,6 +363,10 @@ function switchLanguage(lang) {
     document.getElementById('restaurantsTitle').innerText = CONCIERGE_DATA[lang].restaurantsTitle;
     document.getElementById('partiesTitle').innerText = CONCIERGE_DATA[lang].partiesTitle;
     document.getElementById('footerText').innerText = CONCIERGE_DATA[lang].footerText;
+    
+    document.getElementById('aiHeaderTitle').innerText = lang === 'ar' ? "مساعد المنتجع الذكي" : "Resort Assistant";
+    document.getElementById('aiInput').placeholder = CONCIERGE_DATA[lang].aiPlaceholder;
+    document.getElementById('aiMessages').innerHTML = `<div class="ai-msg bot">${CONCIERGE_DATA[lang].aiWelcome}</div>`;
     
     renderRestaurantsGrid();
     renderPartiesGrid();
