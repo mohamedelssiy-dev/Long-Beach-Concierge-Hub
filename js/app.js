@@ -3,15 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll(".feature-card");
 
     cards.forEach(card => {
-
         card.addEventListener("click", () => {
-
             const title = card.querySelector("h3").innerText;
-
             openSection(title);
-
         });
-
     });
 
 });
@@ -26,5 +21,4 @@ function openSection(sectionName){
             <p>Coming Soon</p>
         </section>
     `;
-
 }
