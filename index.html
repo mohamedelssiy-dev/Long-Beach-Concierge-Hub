@@ -14,58 +14,45 @@ header{position:sticky;top:0;background:#0a2240;padding:20px 15px;text-align:cen
 #clock{color:#ffffff;margin-top:8px;font-size:14px;font-weight:500;}
 .lang-selector{margin-top:12px;}
 .lang-selector button{background:#c5a059;color:#fff;border:none;padding:8px 16px;margin:3px;border-radius:4px;font-weight:600;cursor:pointer;transition:0.2s;}
-.lang-selector button:hover{background:#b38f4b;}
 
-.hero{height:30vh;position:relative;overflow:hidden;display:flex;justify-content:center;align-items:center;text-align:center;padding:20px;}
-.hero-bg{position:absolute;top:0;left:0;width:100%;height:100%;background:#0a2240;background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80');background-size:cover;background-position:center;z-index:1;opacity:0.5;}
-.hero-content{position:relative;z-index:2;max-width:800px;}
-.hero h1{font-size:32px;color:#ffffff;text-shadow:2px 2px 8px rgba(0,0,0,0.7);font-weight:700;}
+.hero{height:25vh;position:relative;overflow:hidden;display:flex;justify-content:center;align-items:center;text-align:center;padding:20px;}
+.hero-bg{position:absolute;top:0;left:0;width:100%;height:100%;background:#0a2240;background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80');background-size:cover;background-position:center;z-index:1;opacity:0.4;}
+.hero-content{position:relative;z-index:2;}
+.hero h1{font-size:30px;color:#ffffff;text-shadow:2px 2px 8px rgba(0,0,0,0.7);}
 
-.nav-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:-25px auto 30px auto;position:relative;z-index:10;max-width:1000px;padding:0 10px;}
-.tab-btn{background:#ffffff;color:#0a2240;border:2px solid #0a2240;padding:12px 24px;border-radius:50px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,0.06);transition:0.3s;display:flex;align-items:center;gap:8px;}
-.tab-btn:hover, .tab-btn.active{background:#0a2240;color:#c5a059;border-color:#c5a059;transform:translateY(-2px);box-shadow:0 6px 15px rgba(10,34,64,0.2);}
+.nav-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:-25px auto 30px auto;position:relative;z-index:10;max-width:1000px;}
+.tab-btn{background:#ffffff;color:#0a2240;border:2px solid #0a2240;padding:12px 24px;border-radius:50px;font-weight:700;cursor:pointer;transition:0.3s;}
+.tab-btn:hover, .tab-btn.active{background:#0a2240;color:#c5a059;border-color:#c5a059;}
 
 .app-page{display:none;padding:20px;max-width:1200px;margin:auto;}
-.app-page.active-page{display:block;animation:fadeIn 0.4s ease;}
-@keyframes fadeIn {from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);}}
+.app-page.active-page{display:block;}
 
-.section-title{color:#0a2240;text-align:center;margin-bottom:20px;font-size:26px;font-weight:700;position:relative;padding-bottom:12px;}
+.section-title{color:#0a2240;text-align:center;margin-bottom:20px;font-size:26px;position:relative;padding-bottom:12px;}
 .section-title::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:50px;height:3px;background:#c5a059;}
 
-.welcome-box {background:#fff; padding:40px; border-radius:12px; text-align:center; box-shadow:0 6px 18px rgba(0,0,0,0.05); border:1px solid #eef2f5;}
-.welcome-box p {color:#555; margin-bottom:20px;}
-
-.grid-layout{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:25px;margin-top:20px;}
-.card{background:#ffffff;border-radius:12px;border:1px solid #eef2f5;box-shadow:0 6px 18px rgba(0,0,0,0.05);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;}
-.card-header{background:#0a2240;color:#fff;padding:15px 20px;font-size:18px;font-weight:600;border-bottom:2px solid #c5a059;display:flex;justify-content:space-between;align-items:center;}
-.card-header .price{color:#c5a059;font-weight:700;}
-.card-body{padding:20px;flex:1;}
+/* تصميم كروت المطاعم القابلة للضغط التفاعلي */
+.grid-layout{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;margin-top:20px;}
+.restaurant-card{background:#ffffff;border-radius:12px;border:1px solid #eef2f5;box-shadow:0 4px 15px rgba(0,0,0,0.05);overflow:hidden;cursor:pointer;transition:0.3s;border-top:4px solid #c5a059;}
+.restaurant-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(10,34,64,0.15);}
+.card-body{padding:20px;}
+.card-name{font-size:22px;color:#0a2240;font-weight:700;margin-bottom:5px;}
 .card-tag{display:inline-block;background:rgba(197,160,89,0.15);color:#0a2240;padding:3px 10px;font-size:12px;font-weight:600;border-radius:4px;margin-bottom:12px;}
-.card-text{font-size:14px;color:#555;margin-bottom:12px;}
-.menu-box{background:#f8f9fa;padding:12px;border-radius:8px;margin-top:10px;border-left:3px solid #c5a059;font-size:13px;}
-body.rtl .menu-box{border-left:none;border-right:3px solid #c5a059;}
-.menu-item-row{display:flex;justify-content:space-between;border-bottom:1px dashed #ddd;padding:4px 0;}
-.item-p{color:#c5a059;font-weight:bold;}
+.card-desc{font-size:14px;color:#666;}
+.click-hint{margin-top:15px;font-size:12px;color:#c5a059;font-weight:bold;text-align:right;}
+body.rtl .click-hint{text-align:left;}
 
-.sub-category-title{font-size:20px;color:#0a2240;font-weight:700;margin:30px 0 10px 0;padding-bottom:5px;border-bottom:2px solid #eef2f5;}
-
-/* تصميم نظام الشات والمساعد الذكي */
-.ai-chat-toggle{position:fixed;bottom:25px;right:25px;background:#c5a059;color:#fff;width:60px;height:60px;border-radius:50%;border:none;cursor:pointer;font-size:26px;box-shadow:0 5px 20px rgba(0,0,0,0.3);z-index:1000;display:flex;justify-content:center;align-items:center;transition:0.3s;}
-body.rtl .ai-chat-toggle{right:auto;left:25px;}
-.ai-chat-toggle:hover{transform:scale(1.05);background:#0a2240;}
-
-.ai-chat-window{position:fixed;bottom:95px;right:25px;width:370px;height:500px;background:#ffffff;border:1px solid #0a2240;border-top:5px solid #c5a059;border-radius:12px;z-index:1000;display:none;flex-direction:column;overflow:hidden;box-shadow:0 10px 35px rgba(0,0,0,0.2);}
-body.rtl .ai-chat-window{right:auto;left:25px;}
-.ai-header{background:#0a2240;padding:15px;color:#c5a059;font-weight:bold;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #c5a059;}
-.ai-body{flex:1;padding:15px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;font-size:14px;background:#f8f9fa;}
-.ai-msg{padding:12px;border-radius:8px;max-width:85%;line-height:1.5;box-shadow:0 2px 5px rgba(0,0,0,0.02);}
-.ai-msg.bot{background:#ffffff;color:#0a2240;align-self:flex-start;border-left:4px solid #c5a059;}
-body.rtl .ai-msg.bot{border-left:none;border-right:4px solid #c5a059;align-self:flex-start;}
-.ai-msg.user{background:#0a2240;color:#fff;align-self:flex-end;}
-.ai-footer{padding:12px;background:#ffffff;display:flex;gap:8px;border-top:1px solid #eee;}
-.ai-input{flex:1;background:#f4f7f6;border:1px solid #ddd;padding:12px;border-radius:6px;outline:none;font-size:14px;}
-.ai-input:focus{border-color:#c5a059;}
-.ai-send{background:#c5a059;color:#fff;border:none;padding:10px 18px;border-radius:6px;cursor:pointer;font-weight:bold;}
+/* تصميم النافذة المنبثقة الفاخرة للمنيو (Modal) */
+.menu-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(10,34,64,0.6);backdrop-filter:blur(5px);z-index:2000;display:none;justify-content:center;align-items:center;padding:15px;}
+.modal-content{background:#ffffff;width:100%;max-width:550px;border-radius:16px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,0.3);animation:modalOpen 0.3s ease;}
+@keyframes modalOpen {from{transform:scale(0.9);opacity:0;} to{transform:scale(1);opacity:1;}}
+.modal-header{background:#0a2240;color:#fff;padding:20px;border-bottom:3px solid #c5a059;display:flex;justify-content:space-between;align-items:center;}
+.modal-close{background:transparent;border:none;color:#c5a059;font-size:24px;cursor:pointer;}
+.modal-body{padding:25px;max-height:70vh;overflow-y:auto;}
+.hours-badge{background:#f4f7f6;padding:12px;border-radius:8px;border-right:4px solid #c5a059;margin-bottom:20px;font-size:14px;color:#0a2240;}
+body.rtl .hours-badge{border-right:none;border-left:4px solid #c5a059;}
+.menu-section-title{font-size:16px;font-weight:700;color:#0a2240;margin-bottom:10px;border-bottom:1px solid #eee;padding-bottom:5px;}
+.menu-item-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #ddd;font-size:14px;}
+.menu-price{color:#c5a059;font-weight:700;}
 
 footer{background:#0a2240;color:#fff;padding:25px;text-align:center;border-top:4px solid #c5a059;font-size:13px;margin-top:40px;}
 </style>
@@ -83,160 +70,106 @@ footer{background:#0a2240;color:#fff;padding:25px;text-align:center;border-top:4
 
 <section class="hero">
     <div class="hero-bg"></div>
-    <div class="hero-content">
-        <h1 id="heroTitle">Luxury Guest Concierge</h1>
-    </div>
+    <div class="hero-content"><h1 id="heroTitle">Luxury Guest Concierge</h1></div>
 </section>
 
 <div class="nav-tabs">
     <button class="tab-btn active" id="tabHome" onclick="navigateToPage('homePage', 'tabHome')">🏠 <span id="btnTextHome">Home</span></button>
     <button class="tab-btn" id="tabRes" onclick="navigateToPage('restaurantsPage', 'tabRes')">🍽️ <span id="btnTextRes">Restaurants</span></button>
-    <button class="tab-btn" id="tabParties" onclick="navigateToPage('partiesPage', 'tabParties')">🎉 <span id="btnTextParties">Parties</span></button>
 </div>
 
 <div class="app-page active-page" id="homePage">
     <div class="welcome-box">
         <h2 class="section-title" id="welcomeTitle">Welcome to Luxury Experience</h2>
-        <p id="welcomeDesc">Navigate through the top tabs to check out our master menus or incoming beachfront events.</p>
+        <p id="welcomeDesc">Click on the "Restaurants" tab to explore our interactive catalog.</p>
     </div>
 </div>
 
+<!-- صفحة المطاعم التفاعلية الجديدة -->
 <div class="app-page" id="restaurantsPage">
     <div class="section-title" id="restaurantsTitle">Our Restaurants</div>
     <div class="grid-layout" id="restaurantsContainer"></div>
 </div>
 
-<div class="app-page" id="partiesPage">
-    <div class="section-title" id="partiesTitle">Parties & Events</div>
-    <div id="partiesContainer"></div>
-</div>
-
-<button class="ai-chat-toggle" onclick="toggleAiWindow()">💬</button>
-<div class="ai-chat-window" id="aiWindow">
-    <div class="ai-header">
-        <span id="aiHeaderTitle">Resort Assistant</span>
-        <button onclick="toggleAiWindow()" style="background:transparent;border:none;color:#c5a059;cursor:pointer;font-size:16px;font-weight:bold;">✕</button>
-    </div>
-    <div class="ai-body" id="aiMessages"></div>
-    <div class="ai-footer">
-        <input type="text" id="aiInput" class="ai-input" placeholder="Ask me anything..." onkeydown="if(event.key === 'Enter') askAiEngine()">
-        <button class="ai-send" onclick="askAiEngine()">➔</button>
+<!-- النافذة المنبثقة الذكية لعرض المنيو (Modal) -->
+<div class="menu-modal" id="menuModal" onclick="closeMenuModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <h3 id="modalResName">Restaurant Name</h3>
+            <button class="modal-close" onclick="closeMenuModal(null)">✕</button>
+        </div>
+        <div class="modal-body">
+            <div class="hours-badge" id="modalResHours">⏰ Hours: --</div>
+            <div class="menu-section-title" id="modalMenuTitle">📋 Menu Items</div>
+            <div id="modalMenuItemsContainer"></div>
+        </div>
     </div>
 </div>
 
-<footer id="footerText">© Long Beach Concierge Hub - Elite Hospitality Platform</footer>
+<footer id="footerText">© Long Beach Concierge Hub</footer>
 
 <script>
+// قاعدة البيانات المهيأة لتستقبل قوائمك ومواعيدك الحقيقية فوراً
 const CONCIERGE_DATA = {
     en: {
         heroTitle: "Luxury Guest Concierge",
         btnTextHome: "Home",
         btnTextRes: "Restaurants",
-        btnTextParties: "Parties",
         welcomeTitle: "Welcome to Luxury Experience",
-        welcomeDesc: "Navigate through the top tabs to check out our master menus or incoming beachfront events.",
-        restaurantsTitle: "Our Premium Restaurants & Menus",
-        partiesTitle: "Exclusive Resort Parties & Cruises",
+        welcomeDesc: "Click on the 'Restaurants' tab and tap any restaurant card to reveal its full operational hours and private menu.",
+        restaurantsTitle: "Our Premium Restaurants",
+        clickHint: "Tap to view full menu ➔",
+        hoursText: "⏰ Working Hours: ",
+        menuTitleText: "📖 Menu & Dishes:",
         footerText: "© Long Beach Concierge Hub - Elite Hospitality Platform",
-        menuTitle: "📖 Full Menu:",
-        aiWelcome: "Hello! I am your Smart Concierge. You can ask me any question about our 6 restaurants, their specialties, opening hours, or details regarding the beach and boat parties!",
-        aiPlaceholder: "Ask about a restaurant or party package...",
-        aiDefaultReply: "I'm here to help! Try asking about 'Italian restaurant', 'Seafood', 'Sushi', or 'Boat party details'.",
-        
         restaurants: [
-            { name: "ALDENTE", type: "Authentic Italian", hours: "06:30 PM - 10:00 PM", desc: "Fine wood-fired pizzas, artisanal handmade pastas, and upscale Italian desserts.", 
-              menu: [ {n:"Pizza Quattro Formaggi", p:"$16"}, {n:"Seafood Fettuccine Alfredo", p:"$19"}, {n:"Classic Tiramisu", p:"$8"} ] },
-            { name: "D'WHITE", type: "Main Resort Hub", hours: "07:00 AM - 10:00 AM | 06:30 PM - 09:30 PM", desc: "The main culinary theatre featuring vast open buffet concepts and international flavors.", 
-              menu: [ {n:"Breakfast Pass", p:"Included"}, {n:"Grand Buffet Pass", p:"Included"} ] },
-            { name: "BREEZE", type: "Beach Grill & Bar", hours: "09:00 AM - Sunset", desc: "Sip ultra-refreshing cocktails and enjoy live charcoal grilled skewers directly on the beach.", 
-              menu: [ {n:"Angus Burger", p:"$14"}, {n:"Crispy Calamari Basket", p:"$12"} ] },
-            { name: "OPENBILL", type: "Asian Fusion & Sushi", hours: "07:00 PM - 10:00 PM", desc: "Masterful Asian fusion showcasing live sushi rolling and authentic Japanese textures.", 
-              menu: [ {n:"Volcano Sushi Roll", p:"$18"}, {n:"Beef Teriyaki Wok", p:"$22"} ] },
-            { name: "MARY SOL", type: "Mediterranean Seafood", hours: "06:30 PM - 10:00 PM", desc: "Pick your fresh catch from the daily display and let our chef cook it to perfection.", 
-              menu: [ {n:"Jumbo Shrimp Skewers", p:"$26"}, {n:"Fresh Sea Bass", p:"$24"} ] },
-            { name: "PODIUM", type: "Elite Gourmet Dining", hours: "07:00 PM - 10:30 PM", desc: "An upscale sanctuary tailored for culinary enthusiasts. Exclusive reservation required.", 
-              menu: [ {n:"Wagyu Ribeye Steak", p:"$55"}, {n:"Molten Lava Cake", p:"$9"} ] }
-        ],
-
-        parties: {
-            boatParty: {
-                title: "1. Boat Party",
-                items: [
-                    { name: "Single Cruise Pass", price: "$20 / Person", tag: "Timing: 10:00 AM - 05:00 PM", desc: "Includes: 2 Bottles of Heineken + Premium Lunch Meal on board while cruising the Red Sea crystal waters." },
-                    { name: "Standard Lounge Table", price: "$40 / Table", tag: "Capacity: Up to 5 Guests", desc: "Includes: 1 Bottle of Vodka + 4 Red Bulls + 1 Full Family Lunch Platter." },
-                    { name: "Club Soft Table", price: "$50 / Table", tag: "Non-Alcoholic Tier", desc: "Includes: 1 Liter of Pepsi + Family Chips basket.<br><strong style='color:#d9534f;'>* Note: No Vodka, Whiskey, or Hard liquors included in this tier.</strong>" }
-                ]
-            },
-            beachParty: {
-                title: "2. Beach Party",
-                items: [
-                    { name: "VIP Lounge 1", price: "$70 / Table", tag: "Premium Beachside Lounge", desc: "Includes: 1 Liter of Pepsi + 2 Cans of Red Bull + Chips Basket.<br><span style='color:#2b542c; font-weight:bold;'>➕ Free Premium Bottle: Choice of Vodka, Rum, or Whiskey!</span>" },
-                    { name: "Elite VIP Lounge 2", price: "$80 / Table", tag: "Front-Row Beach Experience", desc: "Includes: 1 Liter of Pepsi + 4 Cans of Red Bull + Chips Basket + Premium Mixed Nuts Platter.<br><span style='color:#2b542c; font-weight:bold;'>➕ Free Premium Bottle: Choice of Vodka, Rum, or Whiskey!</span>" }
-                ]
-            },
-            extraExperiences: {
-                title: "3. Special Luxury Experiences & Add-ons",
-                items: [
-                    { name: "Sunset Seafood Cruise", price: "$35 / Person", tag: "Timing: 06:30 PM - 09:30 PM", desc: "Luxury yacht cruise in the open sea, enjoying a fresh premium seafood dinner with live music backgrounds and unlimited soft drinks." },
-                    { name: "Starry Desert Safari & Bedouin BBQ Night", price: "$45 / Person", tag: "Timing: 05:00 PM - 10:00 PM", desc: "Adventure afternoon including Quad Biking into the mountains, watching the sunset, followed by an authentic Bedouin open buffet grill under the stars with traditional folkloric shows and tea." }
-                ]
-            }
-        }
+            { id: 0, name: "ALDENTE", type: "Authentic Italian", desc: "Fine wood-fired pizzas, artisanal handmade pastas, and upscale Italian desserts." },
+            { id: 1, name: "D'WHITE", type: "Main Resort Hub", desc: "The main culinary theatre featuring vast open buffet concepts and international flavors." },
+            { id: 2, name: "BREEZE", type: "Beach Grill & Bar", desc: "Sip ultra-refreshing cocktails and enjoy live charcoal grilled skewers directly on the beach." },
+            { id: 3, name: "OPENBILL", type: "Asian Fusion & Sushi", desc: "Masterful Asian fusion showcasing live sushi rolling and authentic Japanese textures." },
+            { id: 4, name: "MARY SOL", type: "Mediterranean Seafood", desc: "Pick your fresh catch from the daily display and let our chef cook it to perfection." },
+            { id: 5, name: "PODIUM", type: "Elite Gourmet Dining", desc: "An upscale sanctuary tailored for culinary enthusiasts. Exclusive reservation required." }
+        ]
     },
     ar: {
         heroTitle: "منصة خدمة النزلاء الفاخرة",
         btnTextHome: "الرئيسية",
         btnTextRes: "المطاعم",
-        btnTextParties: "الحفلات",
         welcomeTitle: "مرحباً بكم في خدماتنا الفاخرة",
-        welcomeDesc: "تنقل عبر التبويبات العلوية لاستكشاف المنيوهات الفاخرة المتاحة وحفلات الشاطئ.",
-        restaurantsTitle: "مطاعمنا الفاخرة وقوائم المأكولات",
-        partiesTitle: "الحفلات الحصرية والرحلات البحرية",
+        welcomeDesc: "اضغط على تبويب 'المطاعم' ثم اضغط على كرت أي مطعم لفتح مواعيد العمل والمنيو بالكامل.",
+        restaurantsTitle: "مطاعمنا الفاخرة",
+        clickHint: "إضغط لعرض المنيو بالكامل ➔",
+        hoursText: "⏰ مواعيد العمل الرسمية: ",
+        menuTitleText: "📖 قائمة المأكولات والأطباق:",
         footerText: "© لونج بيش كونسيرج هاب - منصة الضيافة النخبوية",
-        menuTitle: "📖 قائمة الطعام التفصيلية:",
-        aiWelcome: "مرحباً بك! أنا مساعدك الذكي في المنتجع. يمكنك سؤالي عن المطاعم الستة ومواعيدها وقوائم طعامها، أو الاستفسار عن تفاصيل وأسعار حفلات اليخوت والشاطئ!",
-        aiPlaceholder: "اسأل عن مطعم أو تفاصيل حفلة...",
-        aiDefaultReply: "أنا هنا لمساعدتك! جرّب كتابة كلمات مثل 'مطعم إيطالي'، 'سي فود'، 'سوشي'، أو 'حفلة اليخت'.",
-        
         restaurants: [
-            { name: "ALDENTE", type: "المأكولات الإيطالية الأصيلة", hours: "06:30 مساءً - 10:00 مساءً", desc: "بيتزا حقيقية على فرن الحطب، باستا مصنوعة يدوياً باحترافية، وحلويات إيطالية راقية.", 
-              menu: [ {n:"بيتزا كواترو فورماجي", p:"$16"}, {n:"سيفود فيتوتشيني ألفريدو", p:"$19"}, {n:"تيراميسو كلاسيكي", p:"$8"} ] },
-            { name: "D'WHITE", type: "البوفيه المفتوح والرئيسي", hours: "07:00 صباحاً - 10:00 صباحاً | 06:30 مساءً - 09:30 مساءً", desc: "مسرح الطهي الأكبر بالمنتجع ويشمل بوفيهات عالمية ضخمة ومحطات طهي مباشر.", 
-              menu: [ {n:"تذكرة بوفيه الإفطار", p:"مشمول"}, {n:"تذكرة العشاء المفتوح", p:"مشمول"} ] },
-            { name: "BREEZE", type: "بار ومطعم المشويات على الشاطئ", hours: "09:00 صباحاً - حتى غروب الشمس", desc: "استمتع بالمشروبات والكوكتيلات المنعشة مع اللحوم المشوية على الفحم مباشرة على الرمال.", 
-              menu: [ {n:"برجر أنجوس مشوي", p:"$14"}, {n:"سلة الكالاماري المقرمش", p:"$12"} ] },
-            { name: "OPENBILL", type: "مطعم السوشي والآسيوي", hours: "07:00 مساءً - 10:00 مساءً", desc: "أفخم أطباق السوشي والنودلز المحضرة مباشرة بيد طهاة محترفين.", 
-              menu: [ {n:"فولكينو سوشي رول", p:"$18"}, {n:"ووِك لحم البقر تيرياكي", p:"$22"} ] },
-            { name: "MARY SOL", type: "المأكولات البحرية المتخصص", hours: "06:30 مساءً - 10:00 مساءً", desc: "اختر صيدك الطازج واليومي من مياه البحر الأحمر ونطهوه لك بالطريقة التي تفضلها.", 
-              menu: [ {n:"جمبري جامبو مشوي", p:"$26"}, {n:"سمك قاروص طازج", p:"$24"} ] },
-            { name: "PODIUM", type: "مطعم النخبة وعشاء الصفوة", hours: "07:00 مساءً - 10:30 مساءً", desc: "تجربة طعام فاخرة جداً بنظام الألا كارت مخصصة لعشاق المذاق الراقٍ.", 
-              menu: [ {n:"ستيك واغيو ريب آي", p:"$55"}, {n:"مولتن لافا كيك", p:"$9"} ] }
-        ],
+            { id: 0, name: "ALDENTE", type: "المأكولات الإيطالية الأصيلة", desc: "بيتزا حقيقية على فرن الحطب، باستا مصنوعة يدوياً باحترافية، وحلويات إيطالية راقية." },
+            { id: 1, name: "D'WHITE", type: "البوفيه المفتوح والرئيسي", desc: "مسرح الطهي الأكبر بالمنتجع ويشمل بوفيهات عالمية ضخمة ومحطات طهي مباشر." },
+            { id: 2, name: "BREEZE", type: "بار ومطعم المشويات على الشاطئ", desc: "استمتع بالمشروبات والكوكتيلات المنعشة مع اللحوم المشوية على الفحم مباشرة على الرمال." },
+            { id: 3, name: "OPENBILL", type: "مطعم السوشي والآسيوي", desc: "أفخم أطباق السوشي والنودلز المحضرة مباشرة بيد طهاة محترفين." },
+            { id: 4, name: "MARY SOL", type: "المأكولات البحرية المتخصص", desc: "اختر صيدك الطازج واليومي من مياه البحر الأحمر ونطهوه لك بالطريقة التي تفضلها." },
+            { id: 5, name: "PODIUM", type: "مطعم النخبة وعشاء الصفوة", desc: "تجربة طعام فاخرة جداً بنظام الألا كارت مخصصة لعشاق المذاق الراقٍ." }
+        ]
+    }
+};
 
-        parties: {
-            boatParty: {
-                title: "1. Boat Party",
-                items: [
-                    { name: "Single Cruise Pass (تذكرة الفرد)", price: "20 / Person", tag: "التوقيت: 10:00 AM - 05:00 PM", desc: "Includes: 2 Bottles of Heineken + Premium Lunch Meal on board while cruising the Red Sea crystal waters." },
-                    { name: "Standard Lounge Table", price: "$40 / Table", tag: "السعة: تستوعب حتى 5 أفراد", desc: "Includes: 1 Bottle of Vodka + 4 Red Bulls + 1 Full Family Lunch Platter." },
-                    { name: "Club Soft Table", price: "$50 / Table", tag: "طاولة سوفت عائلية", desc: "Includes: 1 Liter of Pepsi + Family Chips basket.<br><strong style='color:#d9534f;'>* Note: No Vodka, Whiskey, or Hard liquors included in this tier.</strong>" }
-                ]
-            },
-            beachParty: {
-                title: "2. حفلة الشاطئ (Beach Party)",
-                items: [
-                    { name: "VIP Lounge 1", price: "$70 / Table", tag: "جلسة شاطئية VIP فاخرة", desc: "Includes: 1 Liter of Pepsi + 2 Cans of Red Bull + Chips Basket.<br><span style='color:#2b542c; font-weight:bold;'>➕ يندرج معها مجاناً وبشكل مسموح: زجاجة فودكا أو رم أو ويسكي (حسب اختيارك)!</span>" },
-                    { name: "Elite VIP Lounge 2", price: "$80 / Table", tag: "جلسة النخبة صف أول على الشاطئ", desc: "Includes: 1 Liter of Pepsi + 4 Cans of Red Bull + Chips Basket + Premium Mixed Nuts Platter.<br><span style='color:#2b542c; font-weight:bold;'>➕ يندرج معها مجاناً وبشكل مسموح: زجاجة فودكا أو رم أو ويسكي (حسب اختيارك)!</span>" }
-                ]
-            },
-            extraExperiences: {
-                title: "3. رحلات وتجارب حصرية وإضافات فاخرة",
-                items: [
-                    { name: "Sunset Seafood Cruise (عشاء مأكولات بحرية في اليخت)", price: "$35 / الشخص", tag: "التوقيت: من الساعة 6:30 مساءً إلى 9:30 مساءً", desc: "رحلة بحرية مسائية ساحرة في يخت في وسط البحر، تشمل تناول عشاء ماكولات بحريه فاخر وطازج مع مشروبات منعشة ومزيكا حية طوال الرحلة." },
-                    { name: "Starry Desert Safari & Bedouin BBQ Night", price: "$45 / الشخص", tag: "التوقيت: 05:00 مساءً - 10:00 مساءً", desc: "مغامرة الانطلاق بالبيتش باجي بين جبال البحر الأحمر الشاهقة ومشاهدة الغروب، تليها سهرة عشاء مشويات بدوي بوفيه مفتوح على ضوء الشموع، وعروض استعراضية وفلكلورية مع الشاي البدوي المميز." }
-                ]
-            }
-        }
+// 🌟 مستودع المنيوهات (سأقوم بحقن بياناتك الحقيقية والأسعار هنا فوراً)
+const RESTAURANT_MENUS = {
+    en: {
+        0: { hours: "06:30 PM - 10:00 PM", items: [ {n:"Pizza Quattro Formaggi", p:"$16"}, {n:"Seafood Fettuccine", p:"$19"} ] },
+        1: { hours: "07:00 AM - 10:00 AM | 06:30 PM - 09:30 PM", items: [ {n:"Grand Buffet Access", p:"Free / All-In"} ] },
+        2: { hours: "09:00 AM - Sunset", items: [ {n:"Charcoal Angus Burger", p:"$14"} ] },
+        3: { hours: "07:00 PM - 10:00 PM", items: [ {n:"Volcano Sushi Roll", p:"$18"} ] },
+        4: { hours: "06:30 PM - 10:00 PM", items: [ {n:"Fresh Sea Bass (KG)", p:"$24"} ] },
+        5: { hours: "07:00 PM - 10:30 PM", items: [ {n:"Wagyu Ribeye Steak", p:"$55"} ] }
+    },
+    ar: {
+        0: { hours: "06:30 مساءً - 10:00 مساءً", items: [ {n:"بيتزا كواترو فورماجي", p:"$16"}, {n:"سيفود فيتوتشيني ألفريدو", p:"$19"} ] },
+        1: { hours: "07:00 صباحاً - 10:00 صباحاً | 06:30 مساءً - 09:30 مساءً", items: [ {n:"دخول البوفيه المفتوح الرئيسي", p:"مشمول مجاناً"} ] },
+        2: { hours: "09:00 صباحاً - حتى غروب الشمس", items: [ {n:"برجر أنجوس على الفحم", p:"$14"} ] },
+        3: { hours: "07:00 مساءً - 10:00 مساءً", items: [ {n:"فولكينو سوشي رول", p:"$18"} ] },
+        4: { hours: "06:30 مساءً - 10:00 مساءً", items: [ {n:"سمك قاروص طازج (بالكيلو)", p:"$24"} ] },
+        5: { hours: "07:00 مساءً - 10:30 مساءً", items: [ {n:"ستيك واغيو ريب آي الفاخر", p:"$55"} ] }
     }
 };
 
@@ -253,123 +186,60 @@ function renderRestaurantsGrid() {
     const container = document.getElementById('restaurantsContainer');
     container.innerHTML = '';
     CONCIERGE_DATA[currentLang].restaurants.forEach(res => {
-        let itemsHtml = '';
-        res.menu.forEach(item => {
-            itemsHtml += `<div class="menu-item-row"><span>• ${item.n}</span><span class="item-p">${item.p}</span></div>`;
-        });
         container.innerHTML += `
-            <div class="card">
-                <div class="card-header">${res.name}</div>
+            <div class="restaurant-card" onclick="openMenuModal(${res.id}, '${res.name}')">
                 <div class="card-body">
+                    <div class="card-name">${res.name}</div>
                     <span class="card-tag">${res.type}</span>
-                    <p class="card-text">⏰ <strong>${res.hours}</strong></p>
-                    <p class="card-text">${res.desc}</p>
-                    <div class="menu-box">
-                        <strong>${CONCIERGE_DATA[currentLang].menuTitle}</strong>
-                        ${itemsHtml}
-                    </div>
+                    <p class="card-desc">${res.desc}</p>
+                    <div class="click-hint">${CONCIERGE_DATA[currentLang].clickHint}</div>
                 </div>
             </div>
         `;
     });
 }
 
-function renderPartiesGrid() {
-    const container = document.getElementById('partiesContainer');
-    container.innerHTML = '';
-    const pData = CONCIERGE_DATA[currentLang].parties;
+// فتح النافذة المنبثقة وحقن المنيو الخاص بكل مطعم تم ضغطه
+function openMenuModal(resId, resName) {
+    const modal = document.getElementById('menuModal');
+    const menuData = RESTAURANT_MENUS[currentLang][resId];
     
-    const buildCategory = (catObj) => {
-        let html = `<div class="sub-category-title">🎯 ${catObj.title}</div><div class="grid-layout">`;
-        catObj.items.forEach(item => {
-            html += `
-                <div class="card" style="border-top: 3px solid #c5a059;">
-                    <div class="card-header">
-                        <span>${item.name}</span>
-                        <span class="price">${item.price}</span>
-                    </div>
-                    <div class="card-body">
-                        <span class="card-tag">${item.tag}</span>
-                        <p class="card-text">${item.desc}</p>
-                    </div>
-                </div>
-            `;
-        });
-        html += `</div>`;
-        return html;
-    };
+    document.getElementById('modalResName').innerText = resName;
+    document.getElementById('modalResHours').innerText = CONCIERGE_DATA[currentLang].hoursText + menuData.hours;
     
-    container.innerHTML += buildCategory(pData.boatParty);
-    container.innerHTML += buildCategory(pData.beachParty);
-    container.innerHTML += buildCategory(pData.extraExperiences);
+    const itemsContainer = document.getElementById('modalMenuItemsContainer');
+    itemsContainer.innerHTML = '';
+    
+    menuData.items.forEach(item => {
+        itemsContainer.innerHTML += `
+            <div class="menu-item-row">
+                <span>• ${item.n}</span>
+                <span class="menu-price">${item.p}</span>
+            </div>
+        `;
+    });
+    
+    modal.style.display = 'flex';
 }
 
-// عناصر التحكم بفتح وإغلاق نافذة الشات
-function toggleAiWindow() {
-    const win = document.getElementById('aiWindow');
-    win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
-}
-
-// محرك ذكاء الكونسيرج الذكي لمعالجة النصوص تلقائياً
-function askAiEngine() {
-    const input = document.getElementById('aiInput');
-    const userMsg = input.value.trim();
-    if(!userMsg) return;
-    
-    const container = document.getElementById('aiMessages');
-    container.innerHTML += `<div class="ai-msg user">${userMsg}</div>`;
-    input.value = '';
-    
-    const msgLower = userMsg.toLowerCase();
-    let reply = CONCIERGE_DATA[currentLang].aiDefaultReply;
-    
-    // فحص الكلمات المفتاحية الذكية والرد الفوري بناءً على البيانات
-    if(msgLower.includes('aldente') || msgLower.includes('إيطالي') || msgLower.includes('italian')) {
-        reply = CONCIERGE_DATA[currentLang].restaurants[0].desc + " (⏰ " + CONCIERGE_DATA[currentLang].restaurants[0].hours + ")";
-    } else if(msgLower.includes('white') || msgLower.includes('وايت') || msgLower.includes('buffet') || msgLower.includes('بوفيه')) {
-        reply = CONCIERGE_DATA[currentLang].restaurants[1].desc + " (⏰ " + CONCIERGE_DATA[currentLang].restaurants[1].hours + ")";
-    } else if(msgLower.includes('breeze') || msgLower.includes('بريز') || msgLower.includes('beach grill')) {
-        reply = CONCIERGE_DATA[currentLang].restaurants[2].desc + " (⏰ " + CONCIERGE_DATA[currentLang].restaurants[2].hours + ")";
-    } else if(msgLower.includes('openbill') || msgLower.includes('أوبن') || msgLower.includes('sushi') || msgLower.includes('سوشي')) {
-        reply = CONCIERGE_DATA[currentLang].restaurants[3].desc + " (⏰ " + CONCIERGE_DATA[currentLang].restaurants[3].hours + ")";
-    } else if(msgLower.includes('mary') || msgLower.includes('صول') || msgLower.includes('بحري') || msgLower.includes('seafood') || msgLower.includes('سمك')) {
-        reply = CONCIERGE_DATA[currentLang].restaurants[4].desc + " (⏰ " + CONCIERGE_DATA[currentLang].restaurants[4].hours + ")";
-    } else if(msgLower.includes('podium') || msgLower.includes('بوديوم') || msgLower.includes('gourmet')) {
-        reply = CONCIERGE_DATA[currentLang].restaurants[5].desc + " (⏰ " + CONCIERGE_DATA[currentLang].restaurants[5].hours + ")";
-    } else if(msgLower.includes('party') || msgLower.includes('حفلة') || msgLower.includes('حفلات') || msgLower.includes('يخت') || msgLower.includes('safari') || msgLower.includes('سفاري')) {
-        reply = currentLang === 'ar' ? "لدينا باقات الـ Boat Party وتبدأ من 20$ للفرد وحفلات الشاطئ الفاخرة VIP (بـ 70$ و 80$) وتتضمن زجاجة مجانية مسموحة من الفودكا/الويسكي، بالإضافة لرحلة اليخت وعشاء السيفود (35$) ورحلة السفاري البدوية (45$)!" : "We have Boat Parties starting from $20/Person, VIP Beach Parties ($70 & $80) including a free allowed bottle of Vodka/Whiskey, Sunset Seafood Cruises ($35), and Starry Desert Safari ($45)!";
-    }
-    
-    setTimeout(() => {
-        container.innerHTML += `<div class="ai-msg bot">${reply}</div>`;
-        container.scrollTop = container.scrollHeight;
-    }, 300);
+function closeMenuModal(event) {
+    document.getElementById('menuModal').style.display = 'none';
 }
 
 function switchLanguage(lang) {
     currentLang = lang;
-    if(lang === 'ar') {
-        document.body.classList.add('rtl');
-    } else {
-        document.body.classList.remove('rtl');
-    }
+    document.body.className = (lang === 'ar') ? 'rtl' : '';
     
     document.getElementById('heroTitle').innerText = CONCIERGE_DATA[lang].heroTitle;
     document.getElementById('btnTextHome').innerText = CONCIERGE_DATA[lang].btnTextHome;
     document.getElementById('btnTextRes').innerText = CONCIERGE_DATA[lang].btnTextRes;
-    document.getElementById('btnTextParties').innerText = CONCIERGE_DATA[lang].btnTextParties;
     document.getElementById('welcomeTitle').innerText = CONCIERGE_DATA[lang].welcomeTitle;
     document.getElementById('welcomeDesc').innerText = CONCIERGE_DATA[lang].welcomeDesc;
     document.getElementById('restaurantsTitle').innerText = CONCIERGE_DATA[lang].restaurantsTitle;
-    document.getElementById('partiesTitle').innerText = CONCIERGE_DATA[lang].partiesTitle;
+    document.getElementById('modalMenuTitle').innerText = CONCIERGE_DATA[lang].menuTitleText;
     document.getElementById('footerText').innerText = CONCIERGE_DATA[lang].footerText;
     
-    document.getElementById('aiHeaderTitle').innerText = lang === 'ar' ? "مساعد المنتجع الذكي" : "Resort Assistant";
-    document.getElementById('aiInput').placeholder = CONCIERGE_DATA[lang].aiPlaceholder;
-    document.getElementById('aiMessages').innerHTML = `<div class="ai-msg bot">${CONCIERGE_DATA[lang].aiWelcome}</div>`;
-    
     renderRestaurantsGrid();
-    renderPartiesGrid();
 }
 
 setInterval(() => {
