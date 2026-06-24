@@ -22,50 +22,36 @@ async function openSection(sectionName){
 
     if(sectionName === "Restaurants"){
 
-        try{
+        const response = await fetch("./data/restaurants.json");
+        const restaurants = await response.json();
 
-            const response = await fetch("./data/restaurants.json");
-            const restaurants = await response.json();
+        let html = `
+        <section class="hero">
+            <h1>Restaurants</h1>
+            <p>Discover our dining venues</p>
+        </section>
 
-            let html = `
-                <section class="hero">
-                    <h1>Restaurants</h1>
-                    <p>Discover our dining venues</p>
-                </section>
+        <section class="quick-access">
+        `;
 
-                <section class="quick-access">
+        restaurants.forEach(restaurant => {
+
+            html += `
+            <div class="feature-card">
+                <h3>${restaurant.name}</h3>
+                <p>${restaurant.type}</p>
+                <br>
+                <p>${restaurant.description}</p>
+                <br>
+                <strong>${restaurant.hours}</strong>
+            </div>
             `;
 
-            restaurants.forEach(restaurant => {
+        });
 
-                html += `
-                    <div class="feature-card">
-                        <h3>${restaurant.name}</h3>
-                        <p>${restaurant.type}</p>
-                        <br>
-                        <p>${restaurant.description}</p>
-                        <br>
-                        <strong>${restaurant.hours}</strong>
-                    </div>
-                `;
+        html += `</section>`;
 
-            });
-
-            html += `</section>`;
-
-            app.innerHTML = html;
-
-        }catch(error){
-
-            app.innerHTML = `
-                <section class="hero">
-                    <h1>Error</h1>
-                    <p>Failed to load restaurants</p>
-                </section>
-            `;
-
-            console.error(error);
-        }
+        app.innerHTML = html;
 
         return;
     }
