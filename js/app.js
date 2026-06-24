@@ -3,17 +3,72 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll(".feature-card");
 
     cards.forEach(card => {
+
         card.addEventListener("click", () => {
+
             const title = card.querySelector("h3").innerText;
+
             openSection(title);
+
         });
+
     });
 
 });
 
-function openSection(sectionName){
+async function openSection(sectionName){
 
     const app = document.getElementById("app");
+
+    if(sectionName === "Restaurants"){
+
+        try{
+
+            const response = await fetch("./data/restaurants.json");
+            const restaurants = await response.json();
+
+            let html = `
+                <section class="hero">
+                    <h1>Restaurants</h1>
+                    <p>Discover our dining venues</p>
+                </section>
+
+                <section class="quick-access">
+            `;
+
+            restaurants.forEach(restaurant => {
+
+                html += `
+                    <div class="feature-card">
+                        <h3>${restaurant.name}</h3>
+                        <p>${restaurant.type}</p>
+                        <br>
+                        <p>${restaurant.description}</p>
+                        <br>
+                        <strong>${restaurant.hours}</strong>
+                    </div>
+                `;
+
+            });
+
+            html += `</section>`;
+
+            app.innerHTML = html;
+
+        }catch(error){
+
+            app.innerHTML = `
+                <section class="hero">
+                    <h1>Error</h1>
+                    <p>Failed to load restaurants</p>
+                </section>
+            `;
+
+            console.error(error);
+        }
+
+        return;
+    }
 
     app.innerHTML = `
         <section class="hero">
