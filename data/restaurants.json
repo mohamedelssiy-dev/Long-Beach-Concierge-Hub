@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "name": "BREEZE",
+    "type": "Main Buffet",
+    "hours": "18:30 - 21:30",
+    "description": "A quiet dinner in the waterfall's embrace.",
+    "image": "assets/images/breeze.jpg"
+  }
+]
