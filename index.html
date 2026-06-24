@@ -35,10 +35,10 @@ header{position:sticky;top:0;background:#0a2240;padding:20px 15px;text-align:cen
 .welcome-box {background:#fff; padding:40px; border-radius:12px; text-align:center; box-shadow:0 6px 18px rgba(0,0,0,0.05); border:1px solid #eef2f5;}
 .welcome-box p {color:#555; margin-bottom:20px;}
 
-/* تصميم كروت المطاعم والمنيوهات الجديد */
 .grid-layout{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:25px;margin-top:20px;}
 .card{background:#ffffff;border-radius:12px;border:1px solid #eef2f5;box-shadow:0 6px 18px rgba(0,0,0,0.05);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;}
-.card-header{background:#0a2240;color:#fff;padding:15px 20px;font-size:18px;font-weight:600;border-bottom:2px solid #c5a059;}
+.card-header{background:#0a2240;color:#fff;padding:15px 20px;font-size:18px;font-weight:600;border-bottom:2px solid #c5a059;display:flex;justify-content:space-between;align-items:center;}
+.card-header .price{color:#c5a059;font-weight:700;}
 .card-body{padding:20px;flex:1;}
 .card-tag{display:inline-block;background:rgba(197,160,89,0.15);color:#0a2240;padding:3px 10px;font-size:12px;font-weight:600;border-radius:4px;margin-bottom:12px;}
 .card-text{font-size:14px;color:#555;margin-bottom:12px;}
@@ -46,6 +46,8 @@ header{position:sticky;top:0;background:#0a2240;padding:20px 15px;text-align:cen
 body.rtl .menu-box{border-left:none;border-right:3px solid #c5a059;}
 .menu-item-row{display:flex;justify-content:space-between;border-bottom:1px dashed #ddd;padding:4px 0;}
 .item-p{color:#c5a059;font-weight:bold;}
+
+.sub-category-title{font-size:20px;color:#0a2240;font-weight:700;margin:30px 0 10px 0;padding-bottom:5px;border-bottom:2px solid #eef2f5;}
 
 footer{background:#0a2240;color:#fff;padding:25px;text-align:center;border-top:4px solid #c5a059;font-size:13px;margin-top:40px;}
 </style>
@@ -81,7 +83,6 @@ footer{background:#0a2240;color:#fff;padding:25px;text-align:center;border-top:4
     </div>
 </div>
 
-<!-- صفحة المطاعم - تم تفعيلها وبناؤها برمجياً هنا بالكامل -->
 <div class="app-page" id="restaurantsPage">
     <div class="section-title" id="restaurantsTitle">Our Restaurants</div>
     <div class="grid-layout" id="restaurantsContainer"></div>
@@ -89,7 +90,7 @@ footer{background:#0a2240;color:#fff;padding:25px;text-align:center;border-top:4
 
 <div class="app-page" id="partiesPage">
     <div class="section-title" id="partiesTitle">Parties & Events</div>
-    <div id="partiesContainer" style="text-align:center; color:#777; padding:20px;">Waiting for your data input...</div>
+    <div id="partiesContainer"></div>
 </div>
 
 <footer id="footerText">© Long Beach Concierge Hub - Elite Hospitality Platform</footer>
@@ -107,6 +108,7 @@ const CONCIERGE_DATA = {
         partiesTitle: "Exclusive Resort Parties & Cruises",
         footerText: "© Long Beach Concierge Hub - Elite Hospitality Platform",
         menuTitle: "📖 Full Menu:",
+        
         restaurants: [
             { name: "ALDENTE", type: "Authentic Italian", hours: "06:30 PM - 10:00 PM", desc: "Fine wood-fired pizzas, artisanal handmade pastas, and upscale Italian desserts.", 
               menu: [ {n:"Pizza Quattro Formaggi", p:"$16"}, {n:"Seafood Fettuccine Alfredo", p:"$19"}, {n:"Classic Tiramisu", p:"$8"} ] },
@@ -120,7 +122,32 @@ const CONCIERGE_DATA = {
               menu: [ {n:"Jumbo Shrimp Skewers", p:"$26"}, {n:"Fresh Sea Bass", p:"$24"} ] },
             { name: "PODIUM", type: "Elite Gourmet Dining", hours: "07:00 PM - 10:30 PM", desc: "An upscale sanctuary tailored for culinary enthusiasts. Exclusive reservation required.", 
               menu: [ {n:"Wagyu Ribeye Steak", p:"$55"}, {n:"Molten Lava Cake", p:"$9"} ] }
-        ]
+        ],
+
+        parties: {
+            boatParty: {
+                title: "1. Boat Party",
+                items: [
+                    { name: "Single Cruise Pass", price: "$20 / Person", tag: "Timing: 10:00 AM - 05:00 PM", desc: "Includes: 2 Bottles of Heineken + Premium Lunch Meal on board while cruising the Red Sea crystal waters." },
+                    { name: "Standard Lounge Table", price: "$40 / Table", tag: "Capacity: Up to 5 Guests", desc: "Includes: 1 Bottle of Vodka + 4 Red Bulls + 1 Full Family Lunch Platter." },
+                    { name: "Club Soft Table", price: "$50 / Table", tag: "Non-Alcoholic Tier", desc: "Includes: 1 Liter of Pepsi + Family Chips basket.<br><strong style='color:#d9534f;'>* Note: No Vodka, Whiskey, or Hard liquors included in this tier.</strong>" }
+                ]
+            },
+            beachParty: {
+                title: "2. Beach Party",
+                items: [
+                    { name: "VIP Lounge 1", price: "$70 / Table", tag: "Premium Beachside Lounge", desc: "Includes: 1 Liter of Pepsi + 2 Cans of Red Bull + Chips Basket.<br><span style='color:#2b542c; font-weight:bold;'>➕ Free Premium Bottle: Choice of Vodka, Rum, or Whiskey!</span>" },
+                    { name: "Elite VIP Lounge 2", price: "$80 / Table", tag: "Front-Row Beach Experience", desc: "Includes: 1 Liter of Pepsi + 4 Cans of Red Bull + Chips Basket + Premium Mixed Nuts Platter.<br><span style='color:#2b542c; font-weight:bold;'>➕ Free Premium Bottle: Choice of Vodka, Rum, or Whiskey!</span>" }
+                ]
+            },
+            extraExperiences: {
+                title: "3. Special Luxury Experiences & Add-ons",
+                items: [
+                    { name: "Sunset Seafood Cruise", price: "$35 / Person", tag: "Timing: 06:30 PM - 09:30 PM", desc: "Luxury yacht cruise in the open sea, enjoying a fresh premium seafood dinner with live music backgrounds and unlimited soft drinks." },
+                    { name: "Starry Desert Safari & Bedouin BBQ Night", price: "$45 / Person", tag: "Timing: 05:00 PM - 10:00 PM", desc: "Adventure afternoon including Quad Biking into the mountains, watching the sunset, followed by an authentic Bedouin open buffet grill under the stars with traditional folkloric shows and tea." }
+                ]
+            }
+        }
     },
     ar: {
         heroTitle: "منصة خدمة النزلاء الفاخرة",
@@ -133,6 +160,7 @@ const CONCIERGE_DATA = {
         partiesTitle: "الحفلات الحصرية والرحلات البحرية",
         footerText: "© لونج بيش كونسيرج هاب - منصة الضيافة النخبوية",
         menuTitle: "📖 قائمة الطعام التفصيلية:",
+        
         restaurants: [
             { name: "ALDENTE", type: "المأكولات الإيطالية الأصيلة", hours: "06:30 مساءً - 10:00 مساءً", desc: "بيتزا حقيقية على فرن الحطب، باستا مصنوعة يدوياً باحترافية، وحلويات إيطالية راقية.", 
               menu: [ {n:"بيتزا كواترو فورماجي", p:"$16"}, {n:"سيفود فيتوتشيني ألفريدو", p:"$19"}, {n:"تيراميسو كلاسيكي", p:"$8"} ] },
@@ -146,7 +174,32 @@ const CONCIERGE_DATA = {
               menu: [ {n:"جمبري جامبو مشوي", p:"$26"}, {n:"سمك قاروص طازج", p:"$24"} ] },
             { name: "PODIUM", type: "مطعم النخبة وعشاء الصفوة", hours: "07:00 مساءً - 10:30 مساءً", desc: "تجربة طعام فاخرة جداً بنظام الألا كارت مخصصة لعشاق المذاق الراقٍ.", 
               menu: [ {n:"ستيك واغيو ريب آي", p:"$55"}, {n:"مولتن لافا كيك", p:"$9"} ] }
-        ]
+        ],
+
+        parties: {
+            boatParty: {
+                title: "1. Boat Party",
+                items: [
+                    { name: "Single Cruise Pass (تذكرة الفرد)", price: "20 / Person", tag: "التوقيت: 10:00 AM - 05:00 PM", desc: "Includes: 2 Bottles of Heineken + Premium Lunch Meal on board while cruising the Red Sea crystal waters." },
+                    { name: "Standard Lounge Table", price: "$40 / Table", tag: "السعة: تستوعب حتى 5 أفراد", desc: "Includes: 1 Bottle of Vodka + 4 Red Bulls + 1 Full Family Lunch Platter." },
+                    { name: "Club Soft Table", price: "$50 / Table", tag: "طاولة سوفت عائلية", desc: "Includes: 1 Liter of Pepsi + Family Chips basket.<br><strong style='color:#d9534f;'>* Note: No Vodka, Whiskey, or Hard liquors included in this tier. (مع السماح بـ No Vodka, Whiskey, or Hard liquors)</strong>" }
+                ]
+            },
+            beachParty: {
+                title: "2. حفلة الشاطئ (Beach Party)",
+                items: [
+                    { name: "VIP Lounge 1", price: "$70 / Table", tag: "جلسة شاطئية VIP فاخرة", desc: "Includes: 1 Liter of Pepsi + 2 Cans of Red Bull + Chips Basket.<br><span style='color:#2b542c; font-weight:bold;'>➕ يندرج معها مجاناً وبشكل مسموح: زجاجة فودكا أو رم أو ويسكي (حسب اختيارك)!</span>" },
+                    { name: "Elite VIP Lounge 2", price: "$80 / Table", tag: "جلسة النخبة صف أول على الشاطئ", desc: "Includes: 1 Liter of Pepsi + 4 Cans of Red Bull + Chips Basket + Premium Mixed Nuts Platter.<br><span style='color:#2b542c; font-weight:bold;'>➕ يندرج معها مجاناً وبشكل مسموح: زجاجة فودكا أو رم أو ويسكي (حسب اختيارك)!</span>" }
+                ]
+            },
+            extraExperiences: {
+                title: "3. رحلات وتجارب حصرية وإضافات فاخرة",
+                items: [
+                    { name: "Sunset Seafood Cruise (عشاء مأكولات بحرية في اليخت)", price: "$35 / الشخص", tag: "التوقيت: من الساعة 6:30 مساءً إلى 9:30 مساءً", desc: "رحلة بحرية مسائية ساحرة في يخت في وسط البحر، تشمل تناول عشاء ماكولات بحريه فاخر وطازج مع مشروبات منعشة ومزيكا حية طوال الرحلة." },
+                    { name: "Starry Desert Safari & Bedouin BBQ Night", price: "$45 / الشخص", tag: "التوقيت: 05:00 مساءً - 10:00 مساءً", desc: "مغامرة الانطلاق بالبيتش باجي بين جبال البحر الأحمر الشاهقة ومشاهدة الغروب، تليها سهرة عشاء مشويات بدوي بوفيه مفتوح على ضوء الشموع، وعروض استعراضية وفلكلورية مع الشاي البدوي المميز." }
+                ]
+            }
+        }
     }
 };
 
@@ -162,13 +215,11 @@ function navigateToPage(pageId, tabId) {
 function renderRestaurantsGrid() {
     const container = document.getElementById('restaurantsContainer');
     container.innerHTML = '';
-    
     CONCIERGE_DATA[currentLang].restaurants.forEach(res => {
         let itemsHtml = '';
         res.menu.forEach(item => {
             itemsHtml += `<div class="menu-item-row"><span>• ${item.n}</span><span class="item-p">${item.p}</span></div>`;
         });
-        
         container.innerHTML += `
             <div class="card">
                 <div class="card-header">${res.name}</div>
@@ -184,6 +235,36 @@ function renderRestaurantsGrid() {
             </div>
         `;
     });
+}
+
+function renderPartiesGrid() {
+    const container = document.getElementById('partiesContainer');
+    container.innerHTML = '';
+    const pData = CONCIERGE_DATA[currentLang].parties;
+    
+    const buildCategory = (catObj) => {
+        let html = `<div class="sub-category-title">🎯 ${catObj.title}</div><div class="grid-layout">`;
+        catObj.items.forEach(item => {
+            html += `
+                <div class="card" style="border-top: 3px solid #c5a059;">
+                    <div class="card-header">
+                        <span>${item.name}</span>
+                        <span class="price">${item.price}</span>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-tag">${item.tag}</span>
+                        <p class="card-text">${item.desc}</p>
+                    </div>
+                </div>
+            `;
+        });
+        html += `</div>`;
+        return html;
+    };
+    
+    container.innerHTML += buildCategory(pData.boatParty);
+    container.innerHTML += buildCategory(pData.beachParty);
+    container.innerHTML += buildCategory(pData.extraExperiences);
 }
 
 function switchLanguage(lang) {
@@ -205,6 +286,7 @@ function switchLanguage(lang) {
     document.getElementById('footerText').innerText = CONCIERGE_DATA[lang].footerText;
     
     renderRestaurantsGrid();
+    renderPartiesGrid();
 }
 
 setInterval(() => {
