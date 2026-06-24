@@ -1,1 +1,1 @@
-alert("APP.JS WORKING");
+alert("APP LOADED");
