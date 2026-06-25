@@ -1,9 +1,6 @@
-// Long Beach Concierge
-// Main Application
+document.addEventListener("DOMContentLoaded", init);
 
-document.addEventListener("DOMContentLoaded", initializeApp);
-
-function initializeApp() {
+function init() {
     renderHome();
 }
 
@@ -12,16 +9,11 @@ function renderHome() {
     const app = document.getElementById("app");
 
     app.innerHTML = `
-
         <header class="main-header">
-
             <div class="logo">
-
                 <h1>LONG BEACH</h1>
                 <h2>CONCIERGE</h2>
-
             </div>
-
         </header>
 
         <main class="home">
@@ -32,42 +24,21 @@ function renderHome() {
 
             <div class="menu">
 
-                <button data-page="restaurants">
-                    🍽 Restaurants
-                </button>
+                <button id="restaurantsBtn">🍽 Restaurants</button>
 
-                <button data-page="bars">
-                    🍹 Bars
-                </button>
+                <button id="barsBtn">🍹 Bars</button>
 
-                <button data-page="events">
-                    🎉 Events
-                </button>
+                <button id="eventsBtn">🎉 Events</button>
 
-                <button data-page="roomservice">
-                    🛎 Room Service
-                </button>
+                <button id="roomBtn">🛎 Room Service</button>
 
             </div>
 
         </main>
-
     `;
 
-    registerEvents();
-
-}
-
-function registerEvents(){
-
-    document.querySelectorAll("[data-page]").forEach(button=>{
-
-        button.addEventListener("click",()=>{
-
-            alert(button.dataset.page);
-
-        });
-
-    });
-
+    document.getElementById("restaurantsBtn").onclick = () => alert("Restaurants");
+    document.getElementById("barsBtn").onclick = () => alert("Bars");
+    document.getElementById("eventsBtn").onclick = () => alert("Events");
+    document.getElementById("roomBtn").onclick = () => alert("Room Service");
 }
